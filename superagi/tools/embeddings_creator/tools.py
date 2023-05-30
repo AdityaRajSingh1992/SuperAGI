@@ -20,27 +20,26 @@ class EmbeddingsCreatorSchema(BaseModel):
 
 class EmbeddingsCreatorTool(BaseTool):
   name = "Embeddings Generator"
-    description = (
+  description = (
         "A tool for converting text into embeddings"
         "Input should be a text file."
-    )
-    args_schema: Type[EmbeddingsCreatorSchema] = EmbeddingsCreatorSchema
+  )
+  args_schema: Type[EmbeddingsCreatorSchema] = EmbeddingsCreatorSchema
        
         
-       def __init__(self, model="text-embedding-ada-002"):
-        self.model = model
+  def __init__(self, model="text-embedding-ada-002"):
+   self.model = model
         
-       def get_embedding(self, text):
-        try:
-            openai.api_key = get_config("OPENAI_API_KEY")
-            print(openai.api_key)
-            response = openai.Embedding.create(
+  def get_embedding(self, text):
+   try:
+    openai.api_key = get_config("OPENAI_API_KEY")
+    print(openai.api_key)
+    response = openai.Embedding.create(
                 input=[text],
-                engine=self.model
-            )
-            return response['data'][0]['embedding']
-        except Exception as exception:
-            return {"error": exception} 
+                engine=self.model )
+     return response['data'][0]['embedding']
+   except Exception as exception:
+    return {"error": exception} 
         
        
       
