@@ -1,6 +1,6 @@
 import os
 import openai
-import langchain 
+#import langchain 
 
 # from langchain.embeddings.openai import OpenAIEmbeddings
 # embeddings = OpenAIEmbeddings(
