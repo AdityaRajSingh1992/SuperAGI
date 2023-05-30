@@ -13,7 +13,7 @@ from superagi.tools.base_tool import BaseTool
 
 
 class EmbeddingsCreatorSchema(BaseModel):
-        text_input: str = Field(
+ text_input: str = Field(
         ...,
         description="The text to be converted into embeddings.",
     )
