@@ -4,7 +4,7 @@ import openai
 import openai
 #from tenacity import retry, wait_random_exponential, stop_after_attempt
 
-class EmbeddingCreatorTool:
+class Embedding_creator_tool:
 
     def __init__(self, model="text-embedding-ada-002"):
         self.model = model
