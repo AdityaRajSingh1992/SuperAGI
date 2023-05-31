@@ -2,7 +2,7 @@ import os
 import openai
 
 import openai
-from tenacity import retry, wait_random_exponential, stop_after_attempt
+#from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 class Embedding_creator_tool:
 
