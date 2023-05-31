@@ -29,7 +29,8 @@ class EmbeddingsCreatorTool(BaseTool):
   def _execute(self, file_name: str):
 
         file_content = ReadFileTool(file_name)
-        embeddings = pd.DataFrame(Embedding_creator_tool(file_content))
+        create_embeddings = Embedding_creator_tool(model)
+        embeddings = pd.DataFrame(create_embeddings.get_embeddings(file_content))
         print (embeddings)
         #embeddings.to_csv("embeddings.csv", index=False)
         # root_dir = get_config('RESOURCES_INPUT_ROOT_DIR')
