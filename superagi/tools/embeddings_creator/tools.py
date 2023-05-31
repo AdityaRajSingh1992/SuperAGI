@@ -1,4 +1,3 @@
-pip install pandas
 import os
 import json
 from abc import ABC, abstractmethod
