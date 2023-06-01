@@ -162,7 +162,7 @@ class SuperAgi:
         session.add(agent_execution_feed)
         session.commit()
 
-        # print(assistant_reply)
+        print(assistant_reply)
         action = self.output_parser.parse(assistant_reply)
         tools = {t.name: t for t in self.tools}
 
