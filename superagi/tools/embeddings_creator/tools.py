@@ -16,12 +16,12 @@ import pandas as pd
 
 
 class EmbeddingsCreatorSchema(BaseModel):
-    file_name: str = Field(...,description="The text to be converted into embeddings.")
+    file_name: str = Field(...,description="The text file to be converted into embeddings.")
 
 class EmbeddingsCreatorTool(BaseTool):
   name = "Embeddings Generator"
   description = (
-        "A tool for converting text into embeddings"
+        "A tool for reading text from a text file and then transforming text into semantic vectors or embeddings. "
         "Input should be a text file."
   )
   args_schema: Type[BaseModel] = EmbeddingsCreatorSchema
