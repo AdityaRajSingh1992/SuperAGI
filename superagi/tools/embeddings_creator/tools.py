@@ -20,14 +20,14 @@ class EmbeddingsCreatorSchema(BaseModel):
 
 class EmbeddingsCreatorTool(BaseTool):
   name = "Embeddings Generator"
+  args_schema: Type[BaseModel] = EmbeddingsCreatorSchema
   description = (
         "A tool for reading text from a text file and then transforming text into semantic vectors or embeddings. "
         "Input should be a text file."
   )
-  args_schema: Type[BaseModel] = EmbeddingsCreatorSchema
-
+  
   def _execute(self, file_name: str):
-
+        model = "text-embedding-ada-002"
         file_content = ReadFileTool(file_name)
         create_embeddings = Embedding_creator_tool(model)
         embeddings = pd.DataFrame(create_embeddings.get_embeddings(file_content))
