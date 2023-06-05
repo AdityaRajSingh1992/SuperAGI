@@ -8,8 +8,9 @@ class Embedding_creator_tool:
 
     def __init__(self, model="text-embedding-ada-002"):
         self.model = model
+
     #@retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
-    def get_embedding(self, text):
+    def get_embedding(self, text: str):
         try:
             openai.api_key = get_config("OPENAI_API_KEY")
             print(openai.api_key)
