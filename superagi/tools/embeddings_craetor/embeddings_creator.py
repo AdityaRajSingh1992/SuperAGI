@@ -26,9 +26,13 @@ class EmbeddingsCreatorTool(BaseTool):
   )
   
   def _execute(self, file_name: str):
-        model = "text-embedding-ada-002"
-        file_content = ReadFileTool(file_name)
-        create_embeddings = Embedding_creator_tool(model)
+        # model = "text-embedding-ada-002"'
+        # print(type(file_name))
+        # print(file_name,'daedhafjeh')
+        file_content = ReadFileTool().execute(file_name)
+        # file_content = "hdfskjdfhksjh"
+        create_embeddings = Embedding_creator_tool()
         embeddings = pd.DataFrame(create_embeddings.get_embeddings(file_content))
-        print (embeddings)
+        # embeddings = "sjkdfhdjsk"
+        return embeddings
  
