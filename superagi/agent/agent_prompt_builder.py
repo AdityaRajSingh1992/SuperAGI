@@ -67,11 +67,15 @@ class AgentPromptBuilder:
                      "args": {"arg name": "value"}}
         }
         formatted_response_format = json.dumps(response_format, indent=4)
-
+        
+        #Discuss with team
         super_agi_prompt = """You are SuperAGI an AI assistant to solve complex problems. Your decisions must always be made independently without seeking user assistance.
           Play to your strengths as an LLM and pursue simple strategies with no legal complications.
           If you have completed all your tasks or reached end state, make sure to use the "finish" tool.
-    
+          You have access to a knowledge tool which has knowledge of the task you are pursuing. To find relevant info, use this tool first before using other tools.
+          If you don't find sufficient info using Knowledge tool, you may use other tools.
+          If a question is being asked, responding only with context from info returned by knowledge tool.
+          
           GOALS:
           {goals}
     
