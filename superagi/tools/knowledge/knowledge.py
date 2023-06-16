@@ -20,7 +20,10 @@ class KnowledgeSearchTool(BaseTool):
     name: str = "Knowledge Search"
     args_schema: Type[BaseModel] = KnowledgeSearchSchema
     description = (
-        "A tool for performing a Knowledge search."
+        "A tool for performing a Knowledge search on knowledge base which might have knowledge of the task you are pursuing."
+        "To find relevant info, use this tool first before using other tools."
+        "If you don't find sufficient info using Knowledge tool, you may use other tools."
+        "If a question is being asked, responding with context from info returned by knowledge tool is prefered."
         "Input should be a search query."
     )
 
