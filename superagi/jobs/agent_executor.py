@@ -123,17 +123,17 @@ class AgentExecutor:
         parsed_config["agent_execution_id"] = agent_execution.id
 
         model_api_key = AgentExecutor.get_model_api_key_from_execution(agent_execution, session)
-        #memory=None
-        try:
-            if parsed_config["LTM_DB"] == "Pinecone":
-                memory = VectorFactory.get_vector_storage("PineCone", "super-agent-index1",
-                                                          OpenAiEmbedding(model_api_key))
-            else:
-                memory = VectorFactory.get_vector_storage("PineCone", "super-agent-index1",
-                                                          OpenAiEmbedding(model_api_key))
-        except:
-            print("Unable to setup the pinecone connection...")
-            memory = None
+        memory=None
+        # try:
+        #     if parsed_config["LTM_DB"] == "Pinecone":
+        #         memory = VectorFactory.get_vector_storage("PineCone", "super-agent-index1",
+        #                                                   OpenAiEmbedding(model_api_key))
+        #     else:
+        #         memory = VectorFactory.get_vector_storage("PineCone", "super-agent-index1",
+        #                                                   OpenAiEmbedding(model_api_key))
+        # except:
+        #     print("Unable to setup the pinecone connection...")
+        #     memory = None
 
         user_tools = session.query(Tool).filter(Tool.id.in_(parsed_config["tools"])).all()
         for tool in user_tools:
