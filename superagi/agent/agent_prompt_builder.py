@@ -66,7 +66,7 @@ class AgentPromptBuilder:
             "tool": {"name": "tool name/task name", "description": "tool or task description",
                      "args": {"arg name": "value"}}
         }
-        formatted_response_format = json.dumps(response_format, indent=4)
+        formatted_response_format = json.dumps(response_format, indent=4,ensure_ascii=False)
 
         super_agi_prompt = """You are SuperAGI an AI assistant to solve complex problems. Your decisions must always be made independently without seeking user assistance.
           Play to your strengths as an LLM and pursue simple strategies with no legal complications.
