@@ -29,6 +29,8 @@ class KnowledgeSearchTool(BaseTool):
 
     def _execute(self, query: str):
         print(query)
-        query_knowledge = Knowledgetoolhelper()
+        pinecone_api_key = get_config("PINECONE_API_KEY")
+        pinecone_environment = get_config("PINECONE_ENVIRONMENT")
+        query_knowledge = Knowledgetoolhelper(pinecone_api_key,pinecone_environment)
         req_context = query_knowledge.get_match_vectors(query)
         return req_context
