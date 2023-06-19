@@ -81,9 +81,7 @@ class JsonCleaner:
         return json_string
 
     @classmethod
-    import json
-
-def fix_content_quotes(cls, json_string: str) -> str:
+    def fix_content_quotes(cls, json_string: str) -> str:
     # Load the JSON string
     data = json.loads(json_string)
 
