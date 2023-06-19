@@ -83,14 +83,14 @@ class JsonCleaner:
     @classmethod
     def fix_content_quotes(cls, json_string: str) -> str:
     # Load the JSON string
-    data = json.loads(json_string)
+        data = json.loads(json_string)
 
     # Fix the double quotes in the content string
-    data['tool']['args']['content'] = data['tool']['args']['content'].replace('"', '\\"')
+        data['tool']['args']['content'] = data['tool']['args']['content'].replace('"', '\\"')
 
     # Dump the data back to a JSON string
-    fixed_json_str = json.dumps(data)
+        fixed_json_str = json.dumps(data)
 
-    return fixed_json_str
+        return fixed_json_str
 
 
