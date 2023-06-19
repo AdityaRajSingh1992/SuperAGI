@@ -26,17 +26,20 @@ from superagi.config.config import get_config
 
 #self.search_index_name)
 class Knowledgetoolhelper:
-  
+  def __init__(self, pinecone_api_key, pinecone_environment):
+    self.pinecone_api_key = pinecone_api_key
+    self.pinecone_environment = pinecone_environment
+    
   def get_match_vectors(self, query):
-    print(get_config('PINECONE_API_KEY'), get_config('PINECONE_ENVIRONMENT'))
-    pinecone.init(api_key=get_config('PINECONE_API_KEY'), environment=get_config('PINECONE_ENVIRONMENT'))
+    #print(get_config('PINECONE_API_KEY'), get_config('PINECONE_ENVIRONMENT'))
+    pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
     embed_model = "text-embedding-ada-002"
     namespace = "SEO Success_lang"
     # print(pinecone.list_indexes())
 
     index = pinecone.Index('knowledge') 
 
-    openai.api_key = get_config('OPENAI_API_KEY')
+    #openai.api_key = get_config('OPENAI_API_KEY')
 #   t1_start = perf_counter()
     query_res = openai.Embedding.create(
       input=[query],
