@@ -18,6 +18,7 @@ class JsonCleaner:
             json_string = cls.add_quotes_to_property_names(json_string)
             json_string = cls.remove_escape_sequences(json_string)
             json_string = cls.balance_braces(json_string)
+            json_string = cls.fix_content_quotes(json_string)
             try:
                 json.loads(json_string)
                 return json_string
@@ -78,3 +79,20 @@ class JsonCleaner:
             json_string += '}' * (open_braces_count - closed_braces_count)
 
         return json_string
+
+    @classmethod
+    import json
+
+def fix_content_quotes(cls, json_string: str) -> str:
+    # Load the JSON string
+    data = json.loads(json_string)
+
+    # Fix the double quotes in the content string
+    data['tool']['args']['content'] = data['tool']['args']['content'].replace('"', '\\"')
+
+    # Dump the data back to a JSON string
+    fixed_json_str = json.dumps(data)
+
+    return fixed_json_str
+
+
