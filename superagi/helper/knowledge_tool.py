@@ -34,7 +34,8 @@ class Knowledgetoolhelper:
     #print(get_config('PINECONE_API_KEY'), get_config('PINECONE_ENVIRONMENT'))
     pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
     embed_model = "text-embedding-ada-002"
-    namespace = "SEO Success_lang"
+    namespace = ""
+    #namespace = "SEO Success_lang"
     # print(pinecone.list_indexes())
 
     index = pinecone.Index('knowledge') 
