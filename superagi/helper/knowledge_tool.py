@@ -34,8 +34,8 @@ class Knowledgetoolhelper:
     print(get_config('PINECONE_API_KEY'), get_config('PINECONE_ENVIRONMENT'))
     pinecone.init(api_key=get_config('PINECONE_API_KEY'), environment=get_config('PINECONE_ENVIRONMENT'))
     embed_model = "text-embedding-ada-002"
-    #namespace = ""
-    namespace = "SEO Success_lang"
+    namespace = ""
+    #namespace = "SEO Success_lang"
     # print(pinecone.list_indexes())
 
     index = pinecone.Index('knowledge') 
@@ -51,8 +51,8 @@ class Knowledgetoolhelper:
     # retrieve from Pinecone
     x_query = query_res['data'][0]['embedding']
     # get relevant contexts (including the questions)
-    search_res = index.query(x_query, top_k=5, namespace=namespace, include_metadata=True)#, include_values=True)
-#    search_res = index.query(x_query, top_k=5, include_metadata=True)#, include_values=True)
+#    search_res = index.query(x_query, top_k=5, namespace=namespace, include_metadata=True)#, include_values=True)
+    search_res = index.query(x_query, top_k=5, include_metadata=True)#, include_values=True)
 #   t1_stop2 = perf_counter()
 #   print("Pinecone Elapsed time:", t1_stop2 - t1_stop)
     print(search_res)
