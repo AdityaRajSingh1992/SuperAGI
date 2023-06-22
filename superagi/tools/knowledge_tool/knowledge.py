@@ -29,9 +29,9 @@ class KnowledgeSearchTool(BaseTool):
 
     def _execute(self, query: str):
         print(query)
-        #pinecone_api_key=''
-        #pinecone_environment=''
-        #openai_api_key=''
+        pinecone_api_key=""
+        pinecone_environment=""
+        openai_api_key=""
         pinecone_api_key = get_config("PINECONE_API_KEY")
         pinecone_environment = get_config("PINECONE_ENVIRONMENT")
         openai_api_key = get_config("OPENAI_API_KEY")
