@@ -38,7 +38,7 @@ class Knowledgetoolhelper:
     namespace = ""
     #namespace = "SEO Success_lang"
     # print(pinecone.list_indexes())
-    pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
+    pinecone.init(api_key=self.pinecone_api_key, environment=self.pinecone_environment)
     index = pinecone.Index('knowledge') 
 
     #openai.api_key = get_config('OPENAI_API_KEY')
