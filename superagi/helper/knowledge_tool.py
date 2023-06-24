@@ -6,11 +6,11 @@ from sentence_transformers import SentenceTransformer
 
 
 class Knowledgetoolhelper:
-  def __init__(self,openai_api_key,knowledge_api_key,knowledge_url, pinecone_environment,knowledge_index_or_collection):
+  def __init__(self,openai_api_key,knowledge_api_key,knowledge_url,knowledge_environment,knowledge_index_or_collection):
     self.openai_api_key = openai_api_key
-    self.knowledge_api_key = pinecone_api_key
+    self.knowledge_api_key = knowledge_api_key
     self.knowledge_url = knowledge_url
-    self.pinecone_environment = pinecone_environment
+    self.knowledge_environment = knowledge_environment
     self.knowledge_index_or_collection = knowledge_index_or_collection
   
   def pinecone_get_match_vectors(self, query):
@@ -18,7 +18,7 @@ class Knowledgetoolhelper:
     namespace = ""
 
     # Initializing pinecone client
-    pinecone.init(api_key=self.knowledge_api_key, environment=self.pinecone_environment)
+    pinecone.init(api_key=self.knowledge_api_key, environment=self.knowledge_environment)
     index = pinecone.Index(self.knowledge_index_or_collection) 
 
     #Embedding Query
