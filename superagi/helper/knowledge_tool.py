@@ -46,7 +46,7 @@ class Knowledgetoolhelper:
 
     return search_res_appended
 
-def qdrant_get_match_vectors(self, query):
+  def qdrant_get_match_vectors(self, query):
     embed_model = SentenceTransformer('all-mpnet-base-v2')
     
     # Initializing qdrant client
