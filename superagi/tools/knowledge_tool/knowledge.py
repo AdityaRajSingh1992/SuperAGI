@@ -45,7 +45,7 @@ class KnowledgeSearchTool(BaseTool):
         #print(f"pinecone_environment : {pinecone_environment}")
         query_knowledge = Knowledgetoolhelper(openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment)
         if knowledge_base == 'PINECONE':
-          req_context = query_knowledge.pineocne_get_match_vectors(query)
+          req_context = query_knowledge.pinecone_get_match_vectors(query)
         elif knowledge_base == 'QDRANT':
           req_context = query_knowledge.qdrant_get_match_vectors(query)
         return req_context
