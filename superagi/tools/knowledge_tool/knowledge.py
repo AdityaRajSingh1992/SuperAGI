@@ -48,4 +48,6 @@ class KnowledgeSearchTool(BaseTool):
           req_context = query_knowledge.pinecone_get_match_vectors(query)
         elif knowledge_base == 'QDRANT':
           req_context = query_knowledge.qdrant_get_match_vectors(query)
+        elif knowledge_base == 'CHROMA':
+          req_context = query_knowledge.chroma_get_match_vectors(query)    
         return req_context
