@@ -89,7 +89,7 @@ class Knowledgetoolhelper:
     chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
                                     persist_directory="/Users/adityarajsingh/Documents/Autonomous/Chroma/"
                                   ))
-
+    collection = chroma_client.get_collection(name=self.knowledge_index_or_collection)
     x_query=encoder.encode(query).tolist()
     #Query the collection 
     search_res = collection.query(
