@@ -1,8 +1,10 @@
 import pinecone
 import openai
-from superagi.config.config import get_config
 from qdrant_client import models, QdrantClient
+import chromadb
+from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
+from superagi.config.config import get_config
 
 
 class Knowledgetoolhelper:
@@ -80,5 +82,32 @@ class Knowledgetoolhelper:
         print(f"An error occurred: {str(e)}")
         # Handle the exception or raise it again if needed
 
+  def chroma_get_match_vectors(self, query):
+    embed_model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Initializing qdrant client
+    chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
+                                    persist_directory="/Users/adityarajsingh/Documents/Autonomous/Chroma/"
+                                  ))
 
-  
+    x_query=encoder.encode(query).tolist()
+    #Query the collection 
+    search_res = collection.query(
+    query_embeddings=x_query,
+    n_results=5
+    #where={"metadata_field": "is_equal_to_this"},
+    #where_document={"$contains":"search_string"}
+    )
+
+    contexts=search_res['documents']
+
+    search_res_appended = ''
+    search_res_appended += f"\nQuery: {query}\n"
+    i = 0
+    for context in contexts:
+      for context_text in context:
+        search_res_appended += str(f'\nchunk{i}:\n')
+        search_res_appended += context_text
+        i += 1
+
+    return search_res_appended  
