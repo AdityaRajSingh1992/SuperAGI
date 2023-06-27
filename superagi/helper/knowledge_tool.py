@@ -8,12 +8,13 @@ from superagi.config.config import get_config
 
 
 class Knowledgetoolhelper:
-  def __init__(self,openai_api_key,knowledge_api_key,knowledge_url,knowledge_environment,knowledge_index_or_collection):
+  def __init__(self,openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment):
     self.openai_api_key = openai_api_key
     self.knowledge_api_key = knowledge_api_key
+    self.knowledge_index_or_collection = knowledge_index_or_collection
     self.knowledge_url = knowledge_url
     self.knowledge_environment = knowledge_environment
-    self.knowledge_index_or_collection = knowledge_index_or_collection
+    
   
   def pinecone_get_match_vectors(self, query):
     embed_model = "text-embedding-ada-002"
