@@ -43,6 +43,7 @@ class KnowledgeSearchTool(BaseTool):
         knowledge_environment = get_config("KNOWLEDGE_ENVIRONMENT")
         #print(f"pinecone_api_key : {pinecone_api_key}")
         #print(f"pinecone_environment : {pinecone_environment}")
+        print(f'{openai_api_key}\n{knowledge_base}\n{knowledge_api_key}\n{knowledge_index_or_collection}\n{knowledge_url}\n{knowledge_environment}')
         query_knowledge = Knowledgetoolhelper(openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment)
         if knowledge_base == 'PINECONE':
           req_context = query_knowledge.pinecone_get_match_vectors(query)
