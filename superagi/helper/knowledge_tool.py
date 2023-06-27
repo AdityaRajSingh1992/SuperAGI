@@ -84,20 +84,24 @@ class Knowledgetoolhelper:
 
   def chroma_get_match_vectors(self, query):
     embed_model = SentenceTransformer('all-mpnet-base-v2')
-    
+    print('1')
     # Initializing qdrant client
     chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
                                     persist_directory="/Users/adityarajsingh/Documents/Autonomous/Chroma/Memoryfolder"
                                   ))
+    print('2')
     collection = chroma_client.get_collection(name=self.knowledge_index_or_collection)
+    print('3')
     x_query=encoder.encode(query).tolist()
     #Query the collection 
+    print('4')
     search_res = collection.query(
     query_embeddings=x_query,
     n_results=5
     #where={"metadata_field": "is_equal_to_this"},
     #where_document={"$contains":"search_string"}
     )
+    print('5')
 
     contexts=search_res['documents']
 
