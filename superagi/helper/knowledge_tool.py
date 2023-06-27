@@ -26,12 +26,53 @@ from superagi.config.config import get_config
 
 #self.search_index_name)
 class Knowledgetoolhelper:
-  def __init__(self,openai_api_key,pinecone_api_key, pinecone_environment):
+  def __init__(self,openai_api_key,knowledge_api_key,knowledge_url,knowledge_environment,knowledge_index_or_collection):
     self.openai_api_key = openai_api_key
-    self.pinecone_api_key = pinecone_api_key
-    self.pinecone_environment = pinecone_environment
+    self.knowledge_api_key = knowledge_api_key
+    self.knowledge_url = knowledge_url
+    self.knowledge_environment = knowledge_environment
+    self.knowledge_index_or_collection = knowledge_index_or_collection
     
   def get_match_vectors(self, query):
+    embed_model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Initializing qdrant client
+    chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
+                                    persist_directory="/Users/adityarajsingh/Documents/Autonomous/Chroma/"
+                                  ))
+
+    x_query=encoder.encode(query).tolist()
+    #Query the collection 
+    search_res = collection.query(
+    query_embeddings=x_query,
+    n_results=5
+    #where={"metadata_field": "is_equal_to_this"},
+    #where_document={"$contains":"search_string"}
+    )
+
+    contexts=search_res['documents']
+
+    search_res_appended = ''
+    search_res_appended += f"\nQuery: {query}\n"
+    i = 0
+    for context in contexts:
+      for context_text in context:
+        search_res_appended += str(f'\nchunk{i}:\n')
+        search_res_appended += context_text
+        i += 1
+
+    return search_res_appended  
+
+
+
+
+
+
+
+
+
+
+    
     print(get_config('PINECONE_API_KEY'), get_config('PINECONE_ENVIRONMENT'))
     #pinecone.init(api_key=get_config('PINECONE_API_KEY'), environment=get_config('PINECONE_ENVIRONMENT'))
     embed_model = "text-embedding-ada-002"
