@@ -87,7 +87,7 @@ class Knowledgetoolhelper:
     
     # Initializing qdrant client
     chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
-                                    persist_directory="~/Documents/Autonomous/26thJune/SuperAGI/workspace"
+                                    persist_directory="~/Documents/Autonomous/26thJune/SuperAGI/workspace/index/"
                                   ))
     collection = chroma_client.get_collection(name=self.knowledge_index_or_collection)
     x_query=encoder.encode(query).tolist()
