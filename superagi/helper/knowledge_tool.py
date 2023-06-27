@@ -85,7 +85,7 @@ class Knowledgetoolhelper:
   def chroma_get_match_vectors(self, query):
     embed_model = SentenceTransformer('all-mpnet-base-v2')
     print(f'{self.knowledge_index_or_collection}')
-    print(f'{self.openai_api_key}\n{self.knowledge_base}\n{self.knowledge_api_key}\n{self.knowledge_index_or_collection}\n{self.knowledge_url}\n{self.knowledge_environment}')
+    print(f'{self.openai_api_key}\n{self.knowledge_api_key}\n{self.knowledge_index_or_collection}\n{self.knowledge_url}\n{self.knowledge_environment}')
     print('1')
     # Initializing qdrant client
     chroma_client=chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
