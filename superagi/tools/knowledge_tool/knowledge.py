@@ -29,14 +29,30 @@ class KnowledgeSearchTool(BaseTool):
 
     def _execute(self, query: str):
         print(query)
-        pinecone_api_key=""
-        pinecone_environment=""
         openai_api_key=""
-        pinecone_api_key = get_config("PINECONE_API_KEY")
-        pinecone_environment = get_config("PINECONE_ENVIRONMENT")
+        knowledge_base=""
+        knowledge_api_key=""
+        knowledge_index_or_collection=""
+        knowledge_url=""
+        knowledge_environment=""
         openai_api_key = get_config("OPENAI_API_KEY")
-        print(f"pinecone_api_key : {pinecone_api_key}")
-        print(f"pinecone_environment : {pinecone_environment}")
-        query_knowledge = Knowledgetoolhelper(openai_api_key,pinecone_api_key,pinecone_environment)
+        knowledge_base = get_config("KNOWLEDGE_BASE")#: QDRANT #PINECONE/CHROMA/WEAVIATE
+        knowledge_api_key = get_config("KNOWLEDGE_API_KEY") 
+        knowledge_index_or_collection = get_config("KNOWLEDGE_INDEX_OR_COLLECTION")
+        knowledge_url = get_config("KNOWLEDGE_URL")
+        knowledge_environment = get_config("KNOWLEDGE_ENVIRONMENT")
+        #print(f"pinecone_api_key : {pinecone_api_key}")
+        #print(f"pinecone_environment : {pinecone_environment}")
+        query_knowledge = Knowledgetoolhelper(openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment)
         req_context = query_knowledge.get_match_vectors(query)
         return req_context
+
+
+
+
+
+
+
+
+
+  
