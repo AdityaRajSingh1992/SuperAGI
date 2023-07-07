@@ -51,7 +51,8 @@ class Knowledgetoolhelper:
     return search_res_appended
 
   def qdrant_get_match_vectors(self, query):
-    embed_model = SentenceTransformer('all-mpnet-base-v2')
+    embed_model = "text-embedding-ada-002"
+    #embed_model = SentenceTransformer('all-mpnet-base-v2')
     print('1')
     
     # Initializing qdrant client
