@@ -167,6 +167,7 @@ def create_agent_with_config(agent_with_config: AgentConfigInput,
             - agent_type (str): Type of the agent.
             - constraints (List[str]): List of constraints for the agent.
             - tools (List[int]): List of tool identifiers associated with the agent.
+            - knowledge (List[int]): List of tool identifiers associated with the agent.
             - exit (str): Exit condition for the agent.
             - iteration_interval (int): Interval between iterations for the agent.
             - model (str): Model information for the agent.

@@ -7,13 +7,14 @@ from sentence_transformers import SentenceTransformer
 from superagi.config.config import get_config
 
 
-class Knowledgetoolhelper:
-  def __init__(self,openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment):
+class KnowledgeToolHelper:
+  def __init__(self,openai_api_key,knowledge_api_key,knowledge_index_or_collection,knowledge_url,knowledge_environment,knowledge_names):
     self.openai_api_key = openai_api_key
     self.knowledge_api_key = knowledge_api_key
     self.knowledge_index_or_collection = knowledge_index_or_collection
     self.knowledge_url = knowledge_url
     self.knowledge_environment = knowledge_environment
+    self.knowledge_names = knowledge_names
     
   
   def pinecone_get_match_vectors(self, query):

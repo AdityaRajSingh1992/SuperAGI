@@ -12,6 +12,7 @@ class AgentConfigInput(BaseModel):
     constraints: List[str]
     toolkits: List[int]
     tools: List[int]
+    knowledge: List[int]
     exit: str
     iteration_interval: int
     model: str
