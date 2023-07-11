@@ -20,9 +20,11 @@ class KnowledgeToolHelper:
   def pinecone_get_match_vectors(self, query):
     embed_model = "text-embedding-ada-002"
     namespace = ""
+	  
     # Initializing pinecone client
     pinecone.init(api_key=self.knowledge_api_key, environment=self.knowledge_environment)
     index = pinecone.Index(self.knowledge_index_or_collection)
+	  
     #Embedding Query
     query_res = openai.Embedding.create(
       input=[query],
@@ -54,11 +56,19 @@ class KnowledgeToolHelper:
         url=self.knowledge_url, 
         api_key=self.knowledge_api_key,
     )
-    
+
+    #Embedding Query
+    query_res = openai.Embedding.create(
+      input=[query],
+      engine=embed_model
+    )
+    x_query = query_res['data'][0]['embedding']
+	  
+    # get relevant contexts (including the questions)  
     try:
         search_res = qdrant_client.search(
             collection_name=self.knowledge_index_or_collection,
-            query_vector=embed_model.encode(query).tolist(),
+            query_vector=x_query,
             query_filter=models.Filter(
 		        must=[
 			        models.FieldCondition(
