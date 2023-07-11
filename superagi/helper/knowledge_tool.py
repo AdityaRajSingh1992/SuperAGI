@@ -31,7 +31,8 @@ class KnowledgeToolHelper:
     x_query = query_res['data'][0]['embedding']
     
     # get relevant contexts (including the questions)
-    search_res = index.query(x_query, top_k=5, include_metadata=True)#, include_values=True)
+    search_res = index.query(x_query, top_k=5, include_metadata=True,filter={
+        "knowledge_name": {"$in": self.knowledge_names}}) #, include_values=True)
     print(search_res)
     contexts = [item['metadata']['text'] for item in search_res['matches']]
     search_res_appended=''
@@ -58,6 +59,11 @@ class KnowledgeToolHelper:
         search_res = qdrant_client.search(
             collection_name=self.knowledge_index_or_collection,
             query_vector=embed_model.encode(query).tolist(),
+            query_filter=models.Filter(
+		        must=[
+			        models.FieldCondition(
+			        key='knowledge_name',
+              match=models.MatchAny(any=self.knowledge_names))]),
             limit=5
         )
      
@@ -109,3 +115,5 @@ class KnowledgeToolHelper:
         i += 1
 
     return search_res_appended  
+
+  
